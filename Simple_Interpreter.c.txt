@@ -1,0 +1,88 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void concat(char *ptr1, char *ptr2) {
+
+  printf("Concatenation is :");
+  for (; *(ptr1) != '\0'; *(ptr1)++) {
+    printf("%c", *(ptr1));
+  }
+
+  for (; *(ptr2) != '\0'; *(ptr2)++) {
+    printf("%c", *(ptr2));
+  }
+}
+
+int check(char *ptr, int length_input) {
+  int int_count = 0;
+  for (; *(ptr) != '\0'; (ptr)++) {
+    if (*(ptr) <= 57 && *(ptr) >= 48) {
+      int_count++;
+    }
+  }
+  if (int_count == length_input) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+int main() {
+  char input_1[50], input_2[50];
+  char *input_ptr = input_1, *input_ptr2 = input_2;
+  int length_input = 0, length_input2 = 0;
+  bool check_input = 0, check_input2 = 0;
+  printf("input 1 :");
+  scanf("%s", input_1);
+  printf("input 2 :");
+  scanf("%s", input_2);
+  for (; *(input_ptr) != '\0'; *(input_ptr)++) {
+    length_input++;
+  }
+  for (; *(input_ptr2) != '\0'; *(input_ptr2)++) {
+    length_input2++;
+  }
+
+  check_input = check(input_1, length_input);
+  check_input2 = check(input_2, length_input2);
+  bool flag = 0;
+  flag = (check_input) & (check_input2);
+  if (flag) {
+    int num1 = atoi(input_1);
+    int num2 = atoi(input_2);
+    printf("select operation: 1.+  , 2.- , 3.* , 4./ \n");
+    int choice_input;
+    printf("select choice no. :");
+    scanf("%d", &choice_input);
+
+    switch (choice_input) {
+      case 1:
+        printf("addition is %d", (num1 + num2));
+        break;
+      case 2:
+        printf("subtration is %d", (num1 - num2));
+        break;
+      case 3:
+        printf("multiplication is %f", ((float)num1 * (float)num2));
+        break;
+      case 4:
+        printf("division is %f", ((float)num1 / (float)num2));
+        break;
+      default:
+        printf("error:invalid choice");
+    }
+  }
+
+  if (!flag) {
+    printf("select operation: 1.concatenation\n");
+    int choice_input2;
+    printf("select choice no. :");
+    scanf("%d", &choice_input2);
+    if (choice_input2 == 1) 
+    {
+      concat(input_1, input_2);
+    }
+  }
+}
